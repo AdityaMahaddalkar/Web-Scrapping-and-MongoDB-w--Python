@@ -31,7 +31,7 @@ def store_data():
         w.save()
 
         # wait for 15 minutes
-        time.sleep(900)
+        time.sleep(90)
 
 
 def query():
@@ -42,6 +42,8 @@ def query():
         print('--------------------------')
         print('Current stats')
         print('Total reports {}'.format(Weather.countReport()))
+
+        user_input = str(input('>'))
 
 if __name__ == '__main__':
     thread1 = threading.Thread(target=store_data)
