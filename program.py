@@ -4,19 +4,17 @@ from data.weather import Weather
 import mongoengine
 import time
 
+
 def main():
     # Connect to database
 
     global_init('Weather_Database')
 
-
     while (True):
 
-
-
-        #Scrap the web page
-        ## Warning : Donot issue huge amount of requests in small time
-        ## This is called spamming
+        # Scrap the web page
+        # Warning : Donot issue huge amount of requests in small time
+        # This is called spamming
         sc = Scraps()
         sc.extract()
 
@@ -31,8 +29,9 @@ def main():
 
         w.save()
 
-        # wait for n seconds
-        time.sleep(10)
+        # wait for 15 minutes
+        time.sleep(900)
+
 
 if __name__ == '__main__':
     main()
