@@ -20,4 +20,8 @@ class Weather(mongoengine.Document):
         ]
     }
 
+    @classmethod
+    def countReport(cls):
+        return Weather.objects().count()
+
     

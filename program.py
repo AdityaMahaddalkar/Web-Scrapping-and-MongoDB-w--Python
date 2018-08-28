@@ -3,9 +3,10 @@ from data.connect import global_init
 from data.weather import Weather
 import mongoengine
 import time
+import threading
 
 
-def main():
+def store_data():
     # Connect to database
 
     global_init('Weather_Database')
@@ -33,5 +34,21 @@ def main():
         time.sleep(900)
 
 
+def query():
+    menu = ''' [q]uery | [f]ind '''
+    while True:
+        print('--------------------------')
+        print(menu)
+        print('--------------------------')
+        print('Current stats')
+        print('Total reports {}'.format(Weather.countReport()))
+
 if __name__ == '__main__':
-    main()
+    thread1 = threading.Thread(target=store_data)
+    thread2 = threading.Thread(target=query)
+
+    thread1.start()
+    thread2.start()
+
+    thread1.join()
+    thread2.join()
